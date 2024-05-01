@@ -73,7 +73,7 @@ class Game():
                     pyxel.rect(cell.x, cell.y, cell.w, cell.h, pyxel.COLOR_WHITE)
 
         pyxel.rect(0,0,SCREEN_WIDTH,self.instructions_h,pyxel.COLOR_GREEN)
-        pyxel.text(1,0,"P: pause/play", pyxel.COLOR_WHITE)
+        pyxel.text(1,0, "P: pause/play", pyxel.COLOR_WHITE)
         pyxel.text(1,7, "Left Click: Change State", pyxel.COLOR_WHITE)
         pyxel.text(1,14, "Q: Quit", pyxel.COLOR_WHITE)
 
