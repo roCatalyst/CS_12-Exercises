@@ -82,4 +82,7 @@ class Game():
         pyxel.text(1,7, "Left Click: Change State", pyxel.COLOR_WHITE)
         pyxel.text(1,14, "Q: Quit    C: Clear", pyxel.COLOR_WHITE)
 
+        if self.pause:
+            pyxel.text(SCREEN_WIDTH//2, SCREEN_HEIGHT//2, "PAUSED", pyxel.COLOR_RED)
+
 Game()
