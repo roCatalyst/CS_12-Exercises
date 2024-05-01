@@ -31,6 +31,11 @@ class Game():
         if pyxel.btnp(pyxel.KEY_P):
             self.pause = not self.pause
 
+        if pyxel.btnp(pyxel.KEY_C):
+            for row in self.Grid:
+                for cell in row:
+                    cell.set_state(False)
+
         if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT):
             for row in self.Grid:
                 for cell in row:
@@ -75,6 +80,6 @@ class Game():
         pyxel.rect(0,0,SCREEN_WIDTH,self.instructions_h,pyxel.COLOR_GREEN)
         pyxel.text(1,0,"P: pause/play", pyxel.COLOR_WHITE)
         pyxel.text(1,7, "Left Click: Change State", pyxel.COLOR_WHITE)
-        pyxel.text(1,14, "Q: Quit", pyxel.COLOR_WHITE)
+        pyxel.text(1,14, "Q: Quit    C: Clear", pyxel.COLOR_WHITE)
 
 Game()
