@@ -37,7 +37,7 @@ class Game():
                     if (cell.x <= pyxel.mouse_x < cell.x+cell.w) and (cell.y <= pyxel.mouse_y < cell.y+cell.h):
                         cell.set_state(not cell.alive)
 
-        if not self.pause:
+        if (not self.pause) and (pyxel.frame_count%30==0):
             grid_h = len(self.Grid)
             grid_w = len(self.Grid[0])
 
