@@ -67,7 +67,7 @@ class Game():
 
             for i in range(grid_h):
                 for j in range(grid_w):
-                    print(f"({i},{j}) is now {n_state[i][j]}")
+                    #print(f"({i},{j}) is now {n_state[i][j]}")
                     self.Grid[i][j].set_state(n_state[i][j])
 
     def draw(self):
