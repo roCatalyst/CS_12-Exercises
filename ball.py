@@ -42,6 +42,7 @@ class Game:
         pyxel.mouse(visible=True)
         self.state = self.init_state()
         self.jump_height = -3
+        self.high_score = 0
 
         pyxel.run(self.update, self.draw)
 
@@ -70,6 +71,7 @@ class Game:
             if (ball.top_y >= SCREEN_HEIGHT):
                 ball.vy, ball.vx = 0, 0
                 self.state.is_game_over = True
+                self.high_score = max(self.high_score, self.state.score)
 
             if (ball.left_x <= 0 or ball.right_x >= SCREEN_WIDTH):
                 ball.vx *= -1
@@ -79,8 +81,6 @@ class Game:
 
             if not self.state.is_game_over:
                 ball.vy += ball.ay
-
-        print(ball)
 
     def update(self):
         if pyxel.btnp(pyxel.KEY_Q):
@@ -96,13 +96,17 @@ class Game:
     def draw(self):
         pyxel.cls(0)
 
-        #draw score
-        score = self.state.score
-        pyxel.text(SCREEN_WIDTH//2, 1, str(score), pyxel.COLOR_GREEN)
+        if not self.state.is_game_over:
+            #draw score
+            score = self.state.score
+            pyxel.text(SCREEN_WIDTH//2, 1, str(score), pyxel.COLOR_GREEN)
 
-        #draw ball
-        ball = self.state.ball
-        pyxel.circ(ball.x, ball.y, ball.radius, pyxel.COLOR_WHITE)
+            #draw ball
+            ball = self.state.ball
+            pyxel.circ(ball.x, ball.y, ball.radius, pyxel.COLOR_WHITE)
+        else:
+            pyxel.text(SCREEN_WIDTH//2 - 5, SCREEN_HEIGHT//2, f"Score: {self.state.score}", pyxel.COLOR_GREEN)
+            pyxel.text(SCREEN_WIDTH//2 - 5, SCREEN_HEIGHT//2 + 6, f"Best: {self.high_score}", pyxel.COLOR_GREEN)
 
 if __name__ == "__main__":
     Game()
