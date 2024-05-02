@@ -61,18 +61,15 @@ class Game:
 
         if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT):
             self.state.start = True
-            print("KICK!")
             if (pyxel.mouse_x - ball.x)**2 + (pyxel.mouse_y - ball.y)**2 <= ball.radius**2:
-                ball.vy = self.jump_height
+                ball.vy = (ball.top_y - pyxel.mouse_y)*0.2
                 ball.vx += (ball.x - pyxel.mouse_x)*0.1
 
         if self.state.start:
-            #TODO: Detect ground collision
             if (ball.bot_y >= SCREEN_HEIGHT):
                 ball.vy, ball.vx = 0, 0
                 self.state.is_game_over = True
 
-            #TODO: Detect wall collision
             if (ball.left_x <= 0 or ball.right_x >= SCREEN_WIDTH):
                 ball.vx *= -1
 
