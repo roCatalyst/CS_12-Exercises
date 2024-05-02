@@ -40,7 +40,7 @@ class State:
 
 class Game:
     def __init__(self):
-        pyxel.init(SCREEN_WIDTH, SCREEN_HEIGHT, "Messenger Soccer", fps=60)
+        pyxel.init(SCREEN_WIDTH, SCREEN_HEIGHT, "Keepie Uppie", fps=60)
 
         pyxel.mouse(visible=True)
         self.state = self.init_state()
