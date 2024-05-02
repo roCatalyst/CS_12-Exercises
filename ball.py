@@ -2,6 +2,9 @@ import pyxel
 from dataclasses import dataclass
 
 SCREEN_WIDTH, SCREEN_HEIGHT = 100, 150
+BALL_RADIUS = 10.0
+GRASS_HEIGHT = 10
+TEXT_DIFF = 7
 
 @dataclass
 class Ball:
@@ -47,8 +50,7 @@ class Game:
         pyxel.run(self.update, self.draw)
 
     def init_state(self) -> State:
-        radius: float = 10.0
-        b = Ball(SCREEN_WIDTH//2, SCREEN_HEIGHT-radius-2, radius, 0, 0, 0.1)
+        b = Ball(SCREEN_WIDTH//2, SCREEN_HEIGHT-BALL_RADIUS-2, BALL_RADIUS, 0, 0, 0.1)
 
         return State(
             ball = b,
@@ -94,19 +96,31 @@ class Game:
             self.update_ball()
     
     def draw(self):
-        pyxel.cls(0)
+        #draw background
+        pyxel.cls(pyxel.COLOR_LIGHT_BLUE)
+        pyxel.rect(0,SCREEN_HEIGHT-GRASS_HEIGHT, SCREEN_WIDTH, GRASS_HEIGHT, pyxel.COLOR_LIME)
 
+        if not self.state.start:
+            pyxel.text(1, 1, "Let's play Keepie Uppie!", pyxel.COLOR_BLACK)  
+            pyxel.text(1, 1 + TEXT_DIFF, "Keep the ball in the air!", pyxel.COLOR_BLACK)  
+            pyxel.text(1, 1 + 2*TEXT_DIFF, "To start, left click", pyxel.COLOR_BLACK)   
+            pyxel.text(1, 1 + 3*TEXT_DIFF, "the ball", pyxel.COLOR_BLACK)   
+        
         if not self.state.is_game_over:
-            #draw score
-            score = self.state.score
-            pyxel.text(SCREEN_WIDTH//2, 1, str(score), pyxel.COLOR_GREEN)
-
             #draw ball
             ball = self.state.ball
             pyxel.circ(ball.x, ball.y, ball.radius, pyxel.COLOR_WHITE)
+
+            if self.state.start:
+                #draw score
+                score = self.state.score
+                pyxel.text(SCREEN_WIDTH//2, 1, str(score), pyxel.COLOR_BLACK)
         else:
-            pyxel.text(SCREEN_WIDTH//2 - 5, SCREEN_HEIGHT//2, f"Score: {self.state.score}", pyxel.COLOR_GREEN)
-            pyxel.text(SCREEN_WIDTH//2 - 5, SCREEN_HEIGHT//2 + 6, f"Best: {self.high_score}", pyxel.COLOR_GREEN)
+            pyxel.text(1, 1, f"Score: {self.state.score}", pyxel.COLOR_BLACK)
+            pyxel.text(1, 1 + TEXT_DIFF, f"Best: {self.high_score}", pyxel.COLOR_BLACK)
+            pyxel.text(1, 1 + 2*TEXT_DIFF, f"play again? [SPACE]", pyxel.COLOR_BLACK)
+            pyxel.text(1, 1 + 3*TEXT_DIFF, f"Quit? [Q]", pyxel.COLOR_BLACK)
+        
 
 if __name__ == "__main__":
     Game()
