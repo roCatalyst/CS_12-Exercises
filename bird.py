@@ -109,7 +109,7 @@ class App:
 
         pyxel.init(self.screen_width, self.screen_height, fps=self.fps)
 
-        pyxel.load("PYXEL_RESOURCE_FILE.pyxres")
+        pyxel.load("MEGALOVANIA.pyxres")
         pyxel.playm(0, loop=True)
 
         pyxel.run(self.update, self.draw)

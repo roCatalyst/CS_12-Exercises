@@ -24,7 +24,7 @@ class Game:
     def __init__(self):
         pyxel.init(SCREEN_WIDTH, SCREEN_HEIGHT, title="sound test", fps=30)
         pyxel.mouse(visible=True)
-        pyxel.load("PYXEL_RESOURCE_FILE.pyxres")
+        pyxel.load("MEGALOVANIA.pyxres")
         self.play_button = Button(SCREEN_WIDTH//2, SCREEN_HEIGHT//2, 10, 10)
         pyxel.run(self.update, self.draw)
       
