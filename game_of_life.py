@@ -17,7 +17,7 @@ class Game():
         self.instructions_h = 20
 
         #initialize grid
-        self.cell_w, self.cell_h = 5, 5
+        self.cell_w, self.cell_h = 2, 2
         self.Grid: list[list[Cell]] = [[Cell(i, j, self.cell_w, self.cell_h) for j in range(self.instructions_h, SCREEN_HEIGHT, self.cell_w)] for i in range(0, SCREEN_WIDTH, self.cell_h)]
         self.pause = True
 
